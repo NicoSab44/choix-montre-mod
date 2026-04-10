@@ -4,228 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurateur de Montre NH Seiko</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --gold: #d4af37;
-            --dark-bg: #1a1a1a;
-            --card-bg: #2d2d2d;
-            --text-light: #e0e0e0;
-            --accent: #3498db;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
-
-        .config-section {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .option-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--gold); }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #444;
-            background: #1a1a1a;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Preview Card */
-        .preview-card {
-            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid var(--gold);
-            position: sticky;
-            top: 20px;
-            text-align: center;
-        }
-
-        .watch-visual {
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: var(--gold);
-            margin-bottom: 20px;
-            border: 2px dashed #444;
-            border-radius: 50%;
-            width: 250px;
-            margin: 0 auto 20px auto;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #444;
-            padding: 10px 0;
-        }
-
-        .btn-ali {
-            display: block;
-            margin-top: 25px;
-            padding: 15px;
-            background: #ff4747;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-ali:hover { background: #e03636; }
-
-        .info-tag {
-            font-size: 0.8em;
-            color: #888;
-            margin-top: 5px;
-        }
+        .watch-card { transition: all 0.3s ease; }
+        .watch-card.active { @apply ring-2 ring-yellow-400 scale-105; }
     </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100 font-sans">
 
-<header>
-    <h1>Seiko Mod Studio</h1>
-    <p>Créez votre montre automatique personnalisée (Série NH)</p>
+<header class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-yellow-400 uppercase tracking-widest mb-2">Seiko Mod Studio</h1>
+    <p class="text-gray-400 text-lg">Créez votre montre automatique personnalisée (Série NH)</p>
 </header>
 
-<div class="container">
-    <div class="config-section">
-        <div class="option-group">
-            <label><i class="fa-solid fa-gear"></i> Mouvement (Calibre)</label>
-            <select id="mouvement" onchange="updatePreview()">
-                <option value="NH34" data-desc="GMT - 4 aiguilles (2ème fuseau horaire)">Seiko NH34 (GMT)</option>
-                <option value="NH35" data-desc="Date à 3h - Le plus populaire">Seiko NH35 (Date)</option>
-                <option value="NH36" data-desc="Jour & Date - Très fonctionnel">Seiko NH36 (Day-Date)</option>
-                <option value="NH38" data-desc="Open Heart - On voit le mécanisme">Seiko NH38 (Skeleton/No Date)</option>
-            </select>
-            <div id="desc-mouv" class="info-tag">GMT - 4 aiguilles (2ème fuseau horaire)</div>
-        </div>
-
-        <div class="option-group">
-            <label><i class="fa-solid fa-circle"></i> Style de Boîtier</label>
-            <select id="boitier" onchange="updatePreview()">
-                <option value="Diver">Plongeuse (Submariner Style)</option>
-                <option value="Dress">Habillée (Oyster / Datejust)</option>
-                <option value="Field">Militaire (Brossé / Tactique)</option>
-                <option value="Sport">Sport-Chic (Style Integrated)</option>
-            </select>
-        </div>
-
-        <div class="option-group">
-            <label><i class="fa-solid fa-palette"></i> Couleur du Cadran</label>
-            <select id="cadran" onchange="updatePreview()">
-                <option value="Noir Mat">Noir Mat (Classique)</option>
-                <option value="Bleu Soleillé">Bleu Soleillé (Élégant)</option>
-                <option value="Vert Forêt">Vert Forêt (Tendance)</option>
-                <option value="Argent">Argent / Blanc (Vintage)</option>
-            </select>
-        </div>
-
-        <div class="option-group">
-            <label><i class="fa-solid fa-clock"></i> Aiguilles</label>
-            <select id="aiguilles" onchange="updatePreview()">
-                <option value="Mercedes">Mercedes (Iconique)</option>
-                <option value="Bâtons">Bâtons (Modernes)</option>
-                <option value="Cathédrale">Cathédrale (Rétro)</option>
-            </select>
-        </div>
-
-        <div class="option-group">
-            <label><i class="fa-solid fa-link"></i> Bracelet</label>
-            <select id="bracelet" onchange="updatePreview()">
-                <option value="Acier">Acier 316L (Oyster)</option>
-                <option value="Cuir">Cuir Italien (Brun/Noir)</option>
-                <option value="NATO">Nylon NATO (Sport/Militaire)</option>
-                <option value="FKM Rubber">Caoutchouc FKM (Plongée)</option>
-            </select>
+<div class="max-w-7xl mx-auto px-4">
+    <!-- Section Mouvements -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-gear"></i> Mouvement (Calibre)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="mouvement-options">
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="NH34" data-desc="GMT - 4 aiguilles (2ème fuseau horaire)">
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&h=300&fit=crop" alt="NH34" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">NH34 (GMT)</h3>
+                <p class="text-sm text-gray-400">GMT - 4 aiguilles</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH35" data-desc="Date à 3h - Le plus populaire">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=300&fit=crop" alt="NH35" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">NH35 (Date)</h3>
+                <p class="text-sm text-gray-400">Date à 3h - Populaire</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH36" data-desc="Jour & Date - Très fonctionnel">
+                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=300&fit=crop" alt="NH36" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">NH36 (Day-Date)</h3>
+                <p class="text-sm text-gray-400">Jour & Date</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH38" data-desc="Open Heart - On voit le mécanisme">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop" alt="NH38" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">NH38 (Skeleton)</h3>
+                <p class="text-sm text-gray-400">Open Heart</p>
+            </div>
         </div>
     </div>
 
-    <div class="preview-card">
-        <h3>Votre Configuration</h3>
-        <div class="watch-visual" id="watch-icon">
-            <i class="fa-solid fa-stopwatch"></i>
-        </div>
-        
-        <div id="summary">
+    <!-- Section Boîtiers -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-circle"></i> Style de Boîtier
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="boitier-options">
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Diver">
+                <img src="https://images.unsplash.com/photo-1610877692220-26bfb6288b51?w=300&h=300&fit=crop" alt="Diver" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Plongeuse</h3>
+                <p class="text-sm text-gray-400">Submariner Style</p>
             </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Dress">
+                <img src="https://images.unsplash.com/photo-1552209285-50be2c177e86?w=300&h=300&fit=crop" alt="Dress" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Habillée</h3>
+                <p class="text-sm text-gray-400">Oyster / Datejust</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Field">
+                <img src="https://images.unsplash.com/photo-1617635937083-14ec9a4fb3fb?w=300&h=300&fit=crop" alt="Field" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Militaire</h3>
+                <p class="text-sm text-gray-400">Brossé / Tactique</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Sport">
+                <img src="https://images.unsplash.com/photo-1578762421146-f14f3e8a6b0a?w=300&h=300&fit=crop" alt="Sport" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Sport-Chic</h3>
+                <p class="text-sm text-gray-400">Style Integrated</p>
+            </div>
+        </div>
+    </div>
 
-        <a id="ali-link" href="#" target="_blank" class="btn-ali">
-            Trouver les pièces sur AliExpress
+    <!-- Section Cadrans -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-palette"></i> Couleur du Cadran
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cadran-options">
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Noir Mat">
+                <img src="https://images.unsplash.com/photo-1534308983496-4674a6db6d2b?w=300&h=300&fit=crop" alt="Noir Mat" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Noir Mat</h3>
+                <p class="text-sm text-gray-400">Classique intemporel</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Bleu Soleillé">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop" alt="Bleu Soleillé" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Bleu Soleillé</h3>
+                <p class="text-sm text-gray-400">Élégant et moderne</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Vert Forêt">
+                <img src="https://images.unsplash.com/photo-1479365365737-022fac910d6f?w=300&h=300&fit=crop" alt="Vert Forêt" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Vert Forêt</h3>
+                <p class="text-sm text-gray-400">Tendance actuelle</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Argent">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" alt="Argent" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Argent / Blanc</h3>
+                <p class="text-sm text-gray-400">Vintage raffiné</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Aiguilles -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-clock"></i> Aiguilles
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="aiguilles-options">
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Mercedes">
+                <img src="https://images.unsplash.com/photo-1585386959984-2905db51daa0?w=300&h=300&fit=crop" alt="Mercedes" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Mercedes</h3>
+                <p class="text-sm text-gray-400">Iconique classique</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Bâtons">
+                <img src="https://images.unsplash.com/photo-1569495846287-d81619bcaf36?w=300&h=300&fit=crop" alt="Bâtons" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Bâtons</h3>
+                <p class="text-sm text-gray-400">Modernes épurés</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Cathédrale">
+                <img src="https://images.unsplash.com/photo-1531804312915-c3400ca199e7?w=300&h=300&fit=crop" alt="Cathédrale" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Cathédrale</h3>
+                <p class="text-sm text-gray-400">Rétro vintage</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Bracelets -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-link"></i> Bracelet
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="bracelet-options">
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Acier">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop" alt="Acier" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Acier 316L</h3>
+                <p class="text-sm text-gray-400">Oyster élégant</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Cuir">
+                <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300&h=300&fit=crop" alt="Cuir" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Cuir Italien</h3>
+                <p class="text-sm text-gray-400">Brun / Noir</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NATO">
+                <img src="https://images.unsplash.com/photo-1606642945446-418736b40302?w=300&h=300&fit=crop" alt="NATO" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Nylon NATO</h3>
+                <p class="text-sm text-gray-400">Sport militaire</p>
+            </div>
+            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="FKM Rubber">
+                <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=300&h=300&fit=crop" alt="FKM Rubber" class="w-full h-40 object-cover rounded mb-3">
+                <h3 class="font-bold text-yellow-400">Caoutchouc FKM</h3>
+                <p class="text-sm text-gray-400">Plongée technique</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Section -->
+    <div class="sticky top-20 bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-xl border-2 border-yellow-400 shadow-2xl mb-8">
+        <h3 class="text-2xl font-bold text-yellow-400 mb-6">Votre Configuration</h3>
+        
+        <div id="summary" class="bg-gray-900 rounded-lg p-6 mb-6 space-y-4">
+            <div class="flex justify-between border-b border-gray-700 pb-3">
+                <span class="text-gray-400">Moteur :</span>
+                <strong id="summary-mouvement" class="text-yellow-400">NH34</strong>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-3">
+                <span class="text-gray-400">Style :</span>
+                <strong id="summary-boitier" class="text-yellow-400">Diver</strong>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-3">
+                <span class="text-gray-400">Cadran :</span>
+                <strong id="summary-cadran" class="text-yellow-400">Noir Mat</strong>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-3">
+                <span class="text-gray-400">Aiguilles :</span>
+                <strong id="summary-aiguilles" class="text-yellow-400">Mercedes</strong>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-400">Bracelet :</span>
+                <strong id="summary-bracelet" class="text-yellow-400">Acier</strong>
+            </div>
+        </div>
+
+        <a id="ali-link" href="#" target="_blank" class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-center transition-all duration-300">
+            <i class="fa-solid fa-shopping-cart mr-2"></i>Trouver les pièces sur AliExpress
         </a>
     </div>
 </div>
 
 <script>
-    function updatePreview() {
-        const mouv = document.getElementById('mouvement');
-        const boitier = document.getElementById('boitier').value;
-        const cadran = document.getElementById('cadran').value;
-        const aiguilles = document.getElementById('aiguilles').value;
-        const bracelet = document.getElementById('bracelet').value;
+    // État du configurateur
+    let config = {
+        mouvement: 'NH34',
+        boitier: 'Diver',
+        cadran: 'Noir Mat',
+        aiguilles: 'Mercedes',
+        bracelet: 'Acier'
+    };
 
-        // Mise à jour de la description du mouvement
-        document.getElementById('desc-mouv').innerText = mouv.options[mouv.selectedIndex].getAttribute('data-desc');
+    // Initialiser les gestionnaires d'événements
+    function initEventListeners() {
+        // Mouvement
+        document.querySelectorAll('#mouvement-options .watch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectCard(this, 'mouvement', '#mouvement-options');
+            });
+        });
 
-        // Mise à jour du résumé
-        const summaryHTML = `
-            <div class="summary-item"><span>Moteur :</span> <strong>${mouv.value}</strong></div>
-            <div class="summary-item"><span>Style :</span> <strong>${boitier}</strong></div>
-            <div class="summary-item"><span>Cadran :</span> <strong>${cadran}</strong></div>
-            <div class="summary-item"><span>Aiguilles :</span> <strong>${aiguilles}</strong></div>
-            <div class="summary-item"><span>Bracelet :</span> <strong>${bracelet}</strong></div>
-        `;
-        document.getElementById('summary').innerHTML = summaryHTML;
+        // Boîtier
+        document.querySelectorAll('#boitier-options .watch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectCard(this, 'boitier', '#boitier-options');
+            });
+        });
 
-        // Mise à jour du lien AliExpress
-        const searchQuery = `Seiko mod case ${boitier} dial ${cadran} NH${mouv.value.slice(-2)} hands ${aiguilles}`;
-        document.getElementById('ali-link').href = `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(searchQuery)}.html`;
+        // Cadran
+        document.querySelectorAll('#cadran-options .watch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectCard(this, 'cadran', '#cadran-options');
+            });
+        });
 
-        // Animation de l'icône
-        const icon = document.getElementById('watch-icon');
-        icon.style.transform = "scale(1.05)";
-        setTimeout(() => icon.style.transform = "scale(1)", 200);
+        // Aiguilles
+        document.querySelectorAll('#aiguilles-options .watch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectCard(this, 'aiguilles', '#aiguilles-options');
+            });
+        });
+
+        // Bracelet
+        document.querySelectorAll('#bracelet-options .watch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                selectCard(this, 'bracelet', '#bracelet-options');
+            });
+        });
     }
 
-    // Init
+    function selectCard(card, configKey, containerSelector) {
+        // Retirer la classe active de tous les cartes du conteneur
+        document.querySelectorAll(`${containerSelector} .watch-card`).forEach(c => {
+            c.classList.remove('active');
+        });
+        
+        // Ajouter la classe active à la carte cliquée
+        card.classList.add('active');
+        
+        // Mettre à jour la configuration
+        config[configKey] = card.dataset.value;
+        
+        // Mettre à jour l'aperçu
+        updatePreview();
+    }
+
+    function updatePreview() {
+        // Mettre à jour le résumé
+        document.getElementById('summary-mouvement').textContent = config.mouvement;
+        document.getElementById('summary-boitier').textContent = config.boitier;
+        document.getElementById('summary-cadran').textContent = config.cadran;
+        document.getElementById('summary-aiguilles').textContent = config.aiguilles;
+        document.getElementById('summary-bracelet').textContent = config.bracelet;
+
+        // Mettre à jour le lien AliExpress
+        const searchQuery = `Seiko mod case ${config.boitier} dial ${config.cadran}`;
+        document.getElementById('ali-link').href = `https://www.aliexpress.com/w/wholesale-${encodeURIComponent(searchQuery)}.html`;
+
+        // Animation
+        const summary = document.getElementById('summary');
+        summary.style.animation = 'none';
+        setTimeout(() => {
+            summary.style.animation = 'pulse 0.5s ease-in-out';
+        }, 10);
+    }
+
+    // Initialiser
+    initEventListeners();
     updatePreview();
 </script>
-
 </body>
 </html>
