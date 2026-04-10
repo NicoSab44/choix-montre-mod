@@ -24,28 +24,12 @@
         <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-gear"></i> Mouvement (Calibre)
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="mouvement-options">
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="NH34" data-desc="GMT - 4 aiguilles (2ème fuseau horaire)">
-                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&h=300&fit=crop" alt="NH34" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">NH34 (GMT)</h3>
-                <p class="text-sm text-gray-400">GMT - 4 aiguilles</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH35" data-desc="Date à 3h - Le plus populaire">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=300&fit=crop" alt="NH35" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">NH35 (Date)</h3>
-                <p class="text-sm text-gray-400">Date à 3h - Populaire</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH36" data-desc="Jour & Date - Très fonctionnel">
-                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=300&fit=crop" alt="NH36" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">NH36 (Day-Date)</h3>
-                <p class="text-sm text-gray-400">Jour & Date</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NH38" data-desc="Open Heart - On voit le mécanisme">
-                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop" alt="NH38" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">NH38 (Skeleton)</h3>
-                <p class="text-sm text-gray-400">Open Heart</p>
-            </div>
-        </div>
+        <select id="mouvement-select" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white hover:border-yellow-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+            <option value="NH34" data-description="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&h=300&fit=crop">NH34 (GMT) - GMT - 4 aiguilles (2ème fuseau horaire)</option>
+            <option value="NH35" data-description="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=300&fit=crop">NH35 (Date) - Date à 3h - Le plus populaire</option>
+            <option value="NH36" data-description="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=300&fit=crop">NH36 (Day-Date) - Jour & Date - Très fonctionnel</option>
+            <option value="NH38" data-description="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop">NH38 (Skeleton) - Open Heart - On voit le mécanisme</option>
+        </select>
     </div>
 
     <!-- Section Boîtiers -->
@@ -53,28 +37,12 @@
         <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-circle"></i> Style de Boîtier
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="boitier-options">
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Diver">
-                <img src="https://images.unsplash.com/photo-1610877692220-26bfb6288b51?w=300&h=300&fit=crop" alt="Diver" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Plongeuse</h3>
-                <p class="text-sm text-gray-400">Submariner Style</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Dress">
-                <img src="https://images.unsplash.com/photo-1552209285-50be2c177e86?w=300&h=300&fit=crop" alt="Dress" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Habillée</h3>
-                <p class="text-sm text-gray-400">Oyster / Datejust</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Field">
-                <img src="https://images.unsplash.com/photo-1617635937083-14ec9a4fb3fb?w=300&h=300&fit=crop" alt="Field" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Militaire</h3>
-                <p class="text-sm text-gray-400">Brossé / Tactique</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Sport">
-                <img src="https://images.unsplash.com/photo-1578762421146-f14f3e8a6b0a?w=300&h=300&fit=crop" alt="Sport" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Sport-Chic</h3>
-                <p class="text-sm text-gray-400">Style Integrated</p>
-            </div>
-        </div>
+        <select id="boitier-select" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white hover:border-yellow-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+            <option value="Diver" data-description="https://images.unsplash.com/photo-1610877692220-26bfb6288b51?w=300&h=300&fit=crop">Diver - Plongeuse - Submariner Style</option>
+            <option value="Dress" data-description="https://images.unsplash.com/photo-1552209285-50be2c177e86?w=300&h=300&fit=crop">Dress - Habillée - Oyster / Datejust</option>
+            <option value="Field" data-description="https://images.unsplash.com/photo-1617635937083-14ec9a4fb3fb?w=300&h=300&fit=crop">Field - Militaire - Brossé / Tactique</option>
+            <option value="Sport" data-description="https://images.unsplash.com/photo-1578762421146-f14f3e8a6b0a?w=300&h=300&fit=crop">Sport - Sport-Chic - Style Integrated</option>
+        </select>
     </div>
 
     <!-- Section Cadrans -->
@@ -82,28 +50,12 @@
         <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-palette"></i> Couleur du Cadran
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cadran-options">
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Noir Mat">
-                <img src="https://images.unsplash.com/photo-1534308983496-4674a6db6d2b?w=300&h=300&fit=crop" alt="Noir Mat" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Noir Mat</h3>
-                <p class="text-sm text-gray-400">Classique intemporel</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Bleu Soleillé">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop" alt="Bleu Soleillé" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Bleu Soleillé</h3>
-                <p class="text-sm text-gray-400">Élégant et moderne</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Vert Forêt">
-                <img src="https://images.unsplash.com/photo-1479365365737-022fac910d6f?w=300&h=300&fit=crop" alt="Vert Forêt" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Vert Forêt</h3>
-                <p class="text-sm text-gray-400">Tendance actuelle</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Argent">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop" alt="Argent" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Argent / Blanc</h3>
-                <p class="text-sm text-gray-400">Vintage raffiné</p>
-            </div>
-        </div>
+        <select id="cadran-select" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white hover:border-yellow-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+            <option value="Noir Mat" data-description="https://images.unsplash.com/photo-1534308983496-4674a6db6d2b?w=300&h=300&fit=crop">Noir Mat - Classique intemporel</option>
+            <option value="Bleu Soleillé" data-description="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop">Bleu Soleillé - Élégant et moderne</option>
+            <option value="Vert Forêt" data-description="https://images.unsplash.com/photo-1479365365737-022fac910d6f?w=300&h=300&fit=crop">Vert Forêt - Tendance actuelle</option>
+            <option value="Argent" data-description="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop">Argent / Blanc - Vintage raffiné</option>
+        </select>
     </div>
 
     <!-- Section Aiguilles -->
@@ -111,23 +63,11 @@
         <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-clock"></i> Aiguilles
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="aiguilles-options">
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Mercedes">
-                <img src="https://images.unsplash.com/photo-1585386959984-2905db51daa0?w=300&h=300&fit=crop" alt="Mercedes" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Mercedes</h3>
-                <p class="text-sm text-gray-400">Iconique classique</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Bâtons">
-                <img src="https://images.unsplash.com/photo-1569495846287-d81619bcaf36?w=300&h=300&fit=crop" alt="Bâtons" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Bâtons</h3>
-                <p class="text-sm text-gray-400">Modernes épurés</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Cathédrale">
-                <img src="https://images.unsplash.com/photo-1531804312915-c3400ca199e7?w=300&h=300&fit=crop" alt="Cathédrale" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Cathédrale</h3>
-                <p class="text-sm text-gray-400">Rétro vintage</p>
-            </div>
-        </div>
+        <select id="aiguilles-select" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white hover:border-yellow-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+            <option value="Mercedes" data-description="https://images.unsplash.com/photo-1585386959984-2905db51daa0?w=300&h=300&fit=crop">Mercedes - Iconique classique</option>
+            <option value="Bâtons" data-description="https://images.unsplash.com/photo-1569495846287-d81619bcaf36?w=300&h=300&fit=crop">Bâtons - Modernes épurés</option>
+            <option value="Cathédrale" data-description="https://images.unsplash.com/photo-1531804312915-c3400ca199e7?w=300&h=300&fit=crop">Cathédrale - Rétro vintage</option>
+        </select>
     </div>
 
     <!-- Section Bracelets -->
@@ -135,28 +75,12 @@
         <h2 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-link"></i> Bracelet
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="bracelet-options">
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400 active" data-value="Acier">
-                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop" alt="Acier" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Acier 316L</h3>
-                <p class="text-sm text-gray-400">Oyster élégant</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="Cuir">
-                <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300&h=300&fit=crop" alt="Cuir" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Cuir Italien</h3>
-                <p class="text-sm text-gray-400">Brun / Noir</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="NATO">
-                <img src="https://images.unsplash.com/photo-1606642945446-418736b40302?w=300&h=300&fit=crop" alt="NATO" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Nylon NATO</h3>
-                <p class="text-sm text-gray-400">Sport militaire</p>
-            </div>
-            <div class="watch-card cursor-pointer p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-yellow-400" data-value="FKM Rubber">
-                <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=300&h=300&fit=crop" alt="FKM Rubber" class="w-full h-40 object-cover rounded mb-3">
-                <h3 class="font-bold text-yellow-400">Caoutchouc FKM</h3>
-                <p class="text-sm text-gray-400">Plongée technique</p>
-            </div>
-        </div>
+        <select id="bracelet-select" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white hover:border-yellow-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+            <option value="Acier" data-description="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop">Acier 316L - Oyster élégant</option>
+            <option value="Cuir" data-description="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300&h=300&fit=crop">Cuir Italien - Brun / Noir</option>
+            <option value="NATO" data-description="https://images.unsplash.com/photo-1606642945446-418736b40302?w=300&h=300&fit=crop">Nylon NATO - Sport militaire</option>
+            <option value="FKM Rubber" data-description="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=300&h=300&fit=crop">Caoutchouc FKM - Plongée technique</option>
+        </select>
     </div>
 
     <!-- Preview Section -->
